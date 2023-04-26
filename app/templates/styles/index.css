@@ -2,6 +2,12 @@ html {
 	background-color: #61B4CF;
 }
 
+a {
+	color: #206D87;
+	text-decoration: none;
+	font-size: 18px;
+}
+
 .table {
     display:table;
     width:100%;
@@ -28,6 +34,25 @@ html {
     width:33%;
 }
 
+.styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #A3D6E7;
+    border-radius: 10px;
+    background-color: 	#206D87;
+    background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0));
+}
+
+.styled:hover {
+    background-color: 	#208FB7;
+}
+
+.styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
 
 .center {
   display: flex;
