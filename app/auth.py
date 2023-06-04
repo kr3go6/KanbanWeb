@@ -3,11 +3,11 @@ from flask import Blueprint, render_template
 auth = Blueprint("auth", __name__)
 
 
-@auth.route("/login")
+@auth.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("index.html")
+    return render_template("login.html")
 
 
-@auth.route("/sign_up")
+@auth.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
-    return "<p>Sign Up</p>"
+    return render_template("sign_up.html")
