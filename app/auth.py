@@ -22,11 +22,9 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-
-    
-    return render_template("index.html")
+    return render_template("login.html")
 
 
-@auth.route("/sign_up")
+@auth.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
-    return "<p>Sign Up</p>"
+    return render_template("sign_up.html")

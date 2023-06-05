@@ -68,33 +68,7 @@
 		        <div class="d3">WEB</div>
 		    </div>
 		</div>
-
-		<div class="center">
-			<form class="center" method="POST">
-				<ul>
-					<li>
-						<input type="text" id="login" name="user_name" placeholder="Login">
-					</li>
-					<li>
-						<input type="password" id="password" name="user_password" placeholder="Password">
-					</li>
-					<li class="button">
-						<div class="table">
-						    <div class="tr">
-						        <div class="d1">
-									<button class="favorite styled" type="submit">Log in</button>
-						        </div>
-						        <div class="d2"></div>
-						        <div class="d3">
-						        	<a href="{{ url_for('auth.sign_up') }}">
-										Register
-									</a>
-						        </div>
-						    </div>
-						</div>
-					</li>
-				</ul>
-			<form>
-		</div>
+		
+		{% block content %}{% endblock %}
 	</body>
 </html>
