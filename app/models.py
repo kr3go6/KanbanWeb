@@ -4,7 +4,8 @@ from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    nickname = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    password_hash = db.Column(db.String(128))
     kanbans = db.relationship('Kanban')
 
     def __repr__(self):
