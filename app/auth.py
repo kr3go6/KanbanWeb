@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, flash, redirect
-from .models import User, Kanban
+from flask_login import current_user, login_user, logout_user
+from .models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from . import db
 
@@ -8,21 +9,33 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('views.board'))
     if request.method == "POST":
-        email = request.form.get("user_email") 
+        email = request.form.get("user_email")
         password = request.form.get("user_password")
 
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password_hash, password):
                 flash("Logged in succsessfully!", category="success")
-                #  return redirect(url_for("views.home"))
+                login_user(user)
+                return redirect(url_for("views.board"))
             else:
                 flash("Incorrect password, try again.", category="error")
         else:
             flash("Email does not exist.", category="error")
 
     return render_template("login.html")
+
+
+@auth.route("/logout", methods=["GET", "POST"])
+def logout():
+    if not current_user.is_authenticated:
+        return redirect(url_for('auth.login'))
+
+    logout_user()
+    return redirect(url_for("auth.login"))
 
 
 @auth.route("/sign_up", methods=["GET", "POST"])
@@ -48,5 +61,5 @@ def sign_up():
             db.session.commit()
             flash('Account created!', category='success')
             return render_template("login.html")
-        
+
     return render_template("sign_up.html")
