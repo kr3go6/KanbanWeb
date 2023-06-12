@@ -3,18 +3,18 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ url_for('static', filename='board.css') }}" rel="stylesheet" type="text/css">
 		<title>Kanban Web - Board</title>
 	</head>
 	<body>
 		<div class="table">
 		    <div class="tr">
-		        <div class="d1">KAN</div>
-		        <div class="d2">BAN</div>
-		        <div class="d3">WEB</div>
+		        <div class="d1">KanBan Web</div>
+		        <div class="d2"></div>
+		        <div class="d3">{{current_user.email}}</div>
 		    </div>
 		</div>
 		
-		Hello, {{name}}!
+		Hello, {{current_user.email}}!
 	</body>
 </html>

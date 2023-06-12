@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask import redirect, url_for
 from flask import render_template
+from flask_login import current_user
 
 views = Blueprint("views", __name__)
 
@@ -11,5 +12,7 @@ def home():
 
 
 @views.route("/board")
-def board(nickname="World"):
-    return render_template("board.html", name=nickname)
+def board():
+    if not current_user.is_authenticated:
+        return redirect(url_for("auth.login"))
+    return render_template("board.html")
