@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{%block content %}
+<div class="center">
+    <form class="center" method="post">
+        <ul>
+            <li>
+                <input type="text" id="email" name="user_email" placeholder="Email">
+            </li>
+            <li>
+                <input type="password" id="password" name="user_password" placeholder="Password">
+            </li>
+            <li>
+                <input type="password" id="password1" name="user_password1" placeholder="Repeat Password">
+            </li>
+            <li class="button">
+                <div class="table">
+                    <div class="tr">
+                        <div class="d1"></div>
+                        <div class="d2">
+                            <button class="favorite styled" type="submit">Sign Up</button>
+                        </div>
+                        <div class="d3"></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    <form>
+</div>
+{% endblock %}
