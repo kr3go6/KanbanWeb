@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, url_for, flash, redirect
+from flask_login import current_user, login_user
 from .models import User, Kanban
 from werkzeug.security import check_password_hash, generate_password_hash
 from . import db
@@ -8,6 +9,8 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('views.board'))
     if request.method == "POST":
         email = request.form.get("user_email") 
         password = request.form.get("user_password")
@@ -16,7 +19,8 @@ def login():
         if user:
             if check_password_hash(user.password_hash, password):
                 flash("Logged in succsessfully!", category="success")
-                #  return redirect(url_for("views.home"))
+                login_user(user)
+                return redirect(url_for("views.board"))
             else:
                 flash("Incorrect password, try again.", category="error")
         else:

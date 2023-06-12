@@ -1,5 +1,6 @@
 from app import db
 from flask_login import UserMixin
+from app import login
 
 
 class User(db.Model, UserMixin):
@@ -23,3 +24,8 @@ class Kanban(db.Model):
         return f"kanban: id = {self.id},\n\
                  uid = {self.uid}\n\
                  type = {self.type}\n"
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
