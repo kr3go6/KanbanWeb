@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, url_for, flash, redirect
-from flask_login import current_user, login_user
+from flask_login import current_user, login_user, logout_user
 from .models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from . import db
@@ -27,6 +27,15 @@ def login():
             flash("Email does not exist.", category="error")
 
     return render_template("login.html")
+
+
+@auth.route("/logout", methods=["GET", "POST"])
+def logout():
+    if not current_user.is_authenticated:
+        return redirect(url_for('auth.login'))
+
+    logout_user()
+    return redirect(url_for("auth.login"))
 
 
 @auth.route("/sign_up", methods=["GET", "POST"])
