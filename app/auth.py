@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, flash, redirect
 from flask_login import current_user, login_user
-from .models import User, Kanban
+from .models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from . import db
 
@@ -12,7 +12,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('views.board'))
     if request.method == "POST":
-        email = request.form.get("user_email") 
+        email = request.form.get("user_email")
         password = request.form.get("user_password")
 
         user = User.query.filter_by(email=email).first()
@@ -52,5 +52,5 @@ def sign_up():
             db.session.commit()
             flash('Account created!', category='success')
             return render_template("login.html")
-        
+
     return render_template("sign_up.html")

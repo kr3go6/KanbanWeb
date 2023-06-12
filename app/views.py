@@ -9,6 +9,7 @@ views = Blueprint("views", __name__)
 def home():
     return redirect(url_for("auth.login"))
 
+
 @views.route("/board")
 def board(nickname="World"):
     return render_template("board.html", name=nickname)
