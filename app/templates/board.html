@@ -39,7 +39,7 @@
 
 		        {% for todo in todos %}
 			    <p>
-			    {{ todo.content }}
+			    <sup><a href="{{ url_for('views.delete_kanban', id=todo.id|string) }}">X</a></sup>{{ todo.content }}
 			    </p>
 			    {% endfor %}
 		    	</div>
@@ -49,7 +49,7 @@
 
 		        {% for inprog in inprogs %}
 			    <p>
-			    {{ inprog.content }}
+			    <sup><a href="{{ url_for('views.delete_kanban', id=inprog.id|string) }}">X</a></sup>{{ inprog.content }}
 			    </p>
 			    {% endfor %}
 		    	</div>
@@ -59,7 +59,7 @@
 
 		        {% for done in dones %}
 			    <p>
-			    {{ done.content }}
+			    <sup><a href="{{ url_for('views.delete_kanban', id=done.id|string) }}">X</a></sup>{{ done.content }}
 			    </p>
 			    {% endfor %}
 		    	</div>

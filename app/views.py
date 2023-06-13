@@ -60,3 +60,16 @@ def add_kanban():
             db.session.commit()
 
     return redirect(url_for("views.board"))
+
+@views.route("/delete_kanban/<id>", methods=["GET", "POST"])
+def delete_kanban(id):
+    if not current_user.is_authenticated:
+        return redirect(url_for("auth.login"))
+
+    kanban = Kanban.query.filter_by(id=id).first()
+
+    if kanban:
+        db.session.delete(kanban)
+        db.session.commit()
+
+    return redirect(url_for("views.board"))
