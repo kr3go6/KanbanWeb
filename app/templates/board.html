@@ -16,5 +16,54 @@
 		</div>
 		
 		Hello, {{current_user.email}}!
+
+		<div class="table">
+		    <div class="tr">
+		        <div class="kb1"></div>
+		        <div class="kb2">
+		        	<form action="add_kanban" method="POST">
+			        	<input type="text" id="new_kb" name="new_kanban">
+			        	<button class="favorite styled" type="submit" name="kb_type" value="to_do">TO DO</button>
+			        	<button class="favorite styled" type="submit" name="kb_type" value="in_progress">IN PROGRESS</button>
+			        	<button class="favorite styled" type="submit" name="kb_type" value="done">DONE</button>
+		        	<form>
+		        </div>
+		        <div class="kb3"></div>
+		    </div>
+		</div>
+		<br>
+		<div class="table">
+		    <div class="tr">
+		        <div class="kb1">
+		        TO DO
+
+		        {% for todo in todos %}
+			    <p>
+			    {{ todo.content }}
+			    </p>
+			    {% endfor %}
+		    	</div>
+
+		        <div class="kb2">
+		        IN PROGRESS
+
+		        {% for inprog in inprogs %}
+			    <p>
+			    {{ inprog.content }}
+			    </p>
+			    {% endfor %}
+		    	</div>
+
+		        <div class="kb3">
+		        DONE
+
+		        {% for done in dones %}
+			    <p>
+			    {{ done.content }}
+			    </p>
+			    {% endfor %}
+		    	</div>
+		    </div>
+		</div>
 	</body>
 </html>
